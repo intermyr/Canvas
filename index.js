@@ -235,7 +235,9 @@ function buttonHandler(e) {
   playButton.style.display = "none";
   isPlaying = true;
   setTimeout(() => {
-    clearInterval(gameTick);
-    clearInterval(windDirection);
+    if (remainingTime < 1) {
+      clearInterval(gameTick);
+      clearInterval(windDirection);
+    }
   }, remainingTime * 1000);
 }
