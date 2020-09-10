@@ -7,12 +7,16 @@ const ctx = canvas.getContext("2d");
 
 const playButton = document.getElementById("play");
 
-const needleImg = document.getElementById("needle");
-const balloonColor = [
-  document.getElementById("balloonRed"),
-  document.getElementById("balloonPurple"),
-  document.getElementById("balloonGreen"),
-];
+const needleImg = new Image();
+needleImg.src = "needle.png";
+
+const colors = ["Green", "Purple", "Red"];
+
+const balloonColor = colors.map((el) => {
+  let balloon = new Image();
+  balloon.src = `balloon${el}.png`;
+  return balloon;
+});
 
 let isPlaying = false,
   remainingTime = 60,
@@ -165,7 +169,7 @@ function collisionDetection(balloon) {
     if (
       needle.x > balloon.x &&
       needle.x < balloon.x + balloon.w * balloon.scale &&
-      needle.y + needle.h - 20 > balloon.y &&
+      needle.y + needle.h - 10 > balloon.y &&
       needle.y + needle.h < balloon.y + balloon.h
     ) {
       balloon.pop = true;
